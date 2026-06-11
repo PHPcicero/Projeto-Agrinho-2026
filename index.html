@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGROFORTE — Produção & Sustentabilidade</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --preto: #080c08;
+    --cinza-escuro: #111811;
+    --cinza-medio: #1e261e;
+    --cinza-painel: #242e24;
+    --verde-industrial: #3a7d44;
+    --verde-neon: #5cdb6e;
+    --verde-limao: #9ef0a7;
+    --amarelo: #f2c94c;
+    --laranja: #e07b39;
+    --branco: #f5f7f5;
+    --cinza-texto: #8ea68e;
+    --linha: rgba(92,219,110,0.15);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--preto);
+    color: var(--branco);
+    overflow-x: hidden;
+  }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--preto); }
+  ::-webkit-scrollbar-thumb { background: var(--verde-industrial); }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 4rem;
+    height: 64px;
+    background: rgba(8,12,8,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--linha);
+  }
+  .nav-brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.5rem; font-weight: 900; letter-spacing: 0.15em;
+    color: var(--verde-neon);
+    text-transform: uppercase;
+  }
+  .nav-brand span { color: var(--amarelo); }
+  .nav-menu { display:flex; gap:2.5rem; list-style:none; }
+  .nav-menu a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--cinza-texto); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-menu a:hover { color: var(--verde-neon); }
+  .nav-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--preto); background: var(--verde-neon);
+    padding: 0.3rem 0.9rem; font-weight: 700;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    position: relative; overflow: hidden;
+    padding-top: 64px;
+  }
+
+  /* grade de fundo */
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(92,219,110,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(92,219,110,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    z-index: 0;
+  }
+
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 6rem 4rem; position: relative; z-index: 1;
+  }
+  .hero-kicker {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--verde-neon);
+    display: flex; align-items: center; gap: 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+  .hero-kicker::before {
+    content: ''; width: 40px; height: 2px; background: var(--verde-neon);
+  }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(3.5rem, 7vw, 6.5rem);
+    font-weight: 900; line-height: 0.95;
+    text-transform: uppercase; letter-spacing: -0.01em;
+    margin-bottom: 2rem;
+    animation: slideIn 0.9s cubic-bezier(.16,1,.3,1) both;
+  }
+  .hero h1 .line-green { color: var(--verde-neon); display: block; }
+  .hero h1 .line-yellow { color: var(--amarelo); display: block; }
+  .hero-desc {
+    font-size: 1rem; line-height: 1.8; color: var(--cinza-texto);
+    max-width: 420px; margin-bottom: 3rem;
+    animation: slideIn 0.9s 0.2s cubic-bezier(.16,1,.3,1) both;
+  }
+  .hero-btns {
+    display: flex; gap: 1rem;
+    animation: slideIn 0.9s 0.35s cubic-bezier(.16,1,.3,1) both;
+  }
+  .btn-verde {
+    background: var(--verde-neon); color: var(--preto);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem; font-weight: 800; letter-spacing: 0.15em;
+    text-transform: uppercase; padding: 0.85rem 2rem;
+    border: none; cursor: pointer; text-decoration: none;
+    display: inline-block; transition: all 0.2s;
+  }
+  .btn-verde:hover { background: var(--verde-limao); transform: translateY(-2px); }
+  .btn-ghost {
+    background: transparent; color: var(--verde-neon);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; padding: 0.85rem 2rem;
+    border: 1px solid rgba(92,219,110,0.4); cursor: pointer;
+    text-decoration: none; display: inline-block; transition: all 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--verde-neon); background: rgba(92,219,110,0.06); }
+
+  /* painel direito hero */
+  .hero-right {
+    position: relative; z-index: 1;
+    background: var(--cinza-medio);
+    border-left: 1px solid var(--linha);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    overflow: hidden;
+  }
+  .hero-data-panel {
+    padding: 3rem;
+    background: linear-gradient(to top, rgba(8,12,8,0.95) 40%, transparent);
+    position: relative; z-index: 2;
+  }
+  .data-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--verde-neon); margin-bottom: 1.2rem;
+  }
+  .data-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--linha); }
+  .data-cell {
+    background: rgba(8,12,8,0.8);
+    padding: 1.2rem; border: 1px solid transparent;
+    transition: border-color 0.3s;
+  }
+  .data-cell:hover { border-color: var(--verde-neon); }
+  .data-cell .num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2rem; font-weight: 900; color: var(--branco);
+    line-height: 1; display: block;
+  }
+  .data-cell:nth-child(2) .num { color: var(--amarelo); }
+  .data-cell:nth-child(3) .num { color: var(--verde-neon); }
+  .data-cell:nth-child(4) .num { color: var(--laranja); }
+  .data-cell .unit { font-size: 0.72rem; color: var(--cinza-texto); margin-top: 0.3rem; display: block; }
+
+  /* campo visual abstrato */
+  .hero-visual-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 60% 30%, rgba(58,125,68,0.25) 0%, transparent 55%),
+      radial-gradient(ellipse at 20% 80%, rgba(242,201,76,0.1) 0%, transparent 40%);
+  }
+  .hero-stripes {
+    position: absolute; inset: 0; overflow: hidden;
+  }
+  .stripe {
+    position: absolute; left: 0; right: 0;
+    height: 1px; background: rgba(92,219,110,0.08);
+    animation: scanline 4s linear infinite;
+  }
+  .stripe:nth-child(1) { top: 20%; animation-delay: 0s; }
+  .stripe:nth-child(2) { top: 45%; animation-delay: 1.3s; }
+  .stripe:nth-child(3) { top: 70%; animation-delay: 2.6s; }
+
+  /* ── TICKER ── */
+  .ticker {
+    background: var(--verde-industrial);
+    padding: 0.65rem 0; overflow: hidden;
+    border-top: 1px solid rgba(92,219,110,0.3);
+    border-bottom: 1px solid rgba(92,219,110,0.3);
+  }
+  .ticker-inner {
+    display: flex; gap: 4rem;
+    animation: ticker 30s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker-item {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--preto);
+    display: flex; align-items: center; gap: 0.8rem; flex-shrink: 0;
+  }
+  .ticker-dot { width: 5px; height: 5px; background: var(--preto); border-radius: 50%; }
+
+  /* ── SEÇÃO GENÉRICA ── */
+  .section { padding: 6rem 4rem; }
+  .sec-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--verde-neon);
+    display: flex; align-items: center; gap: 0.7rem;
+    margin-bottom: 0.7rem;
+  }
+  .sec-tag::after { content: ''; flex: 0 0 2rem; height: 1px; background: var(--verde-neon); }
+  .sec-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+    font-weight: 900; text-transform: uppercase;
+    letter-spacing: 0.01em; line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .sec-sub {
+    font-size: 0.95rem; line-height: 1.8;
+    color: var(--cinza-texto); max-width: 560px;
+    margin-bottom: 3.5rem;
+  }
+
+  /* ── PILARES ── */
+  .pilares-section { background: var(--cinza-escuro); }
+  .pilares-grid {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 1px; background: var(--linha);
+  }
+  .pilar {
+    background: var(--cinza-escuro);
+    padding: 2.5rem; position: relative;
+    overflow: hidden; transition: background 0.3s;
+  }
+  .pilar:hover { background: var(--cinza-medio); }
+  .pilar::before {
+    content: attr(data-num);
+    position: absolute; top: 1.5rem; right: 2rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 5rem; font-weight: 900; line-height: 1;
+    color: rgba(255,255,255,0.03);
+    pointer-events: none;
+  }
+  .pilar-bar {
+    width: 3rem; height: 3px;
+    margin-bottom: 1.5rem;
+  }
+  .pilar:nth-child(1) .pilar-bar { background: var(--verde-neon); }
+  .pilar:nth-child(2) .pilar-bar { background: var(--amarelo); }
+  .pilar:nth-child(3) .pilar-bar { background: var(--laranja); }
+  .pilar:nth-child(4) .pilar-bar { background: #74c2be; }
+  .pilar:nth-child(5) .pilar-bar { background: #c97fbd; }
+  .pilar:nth-child(6) .pilar-bar { background: #e07c5f; }
+  .pilar-icon { font-size: 1.8rem; margin-bottom: 1rem; display: block; }
+  .pilar h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.2rem; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--branco); margin-bottom: 0.7rem;
+  }
+  .pilar p { font-size: 0.85rem; line-height: 1.7; color: var(--cinza-texto); }
+
+  /* ── PRÁTICAS — lista industrial ── */
+  .praticas-section { background: var(--preto); }
+  .praticas-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 5rem; align-items: start; }
+  .praticas-lista { display: flex; flex-direction: column; gap: 0; }
+  .pratica-row {
+    display: flex; align-items: flex-start; gap: 1.5rem;
+    padding: 1.8rem 0;
+    border-bottom: 1px solid var(--linha);
+    cursor: default; transition: padding-left 0.3s;
+  }
+  .pratica-row:hover { padding-left: 0.5rem; }
+  .pratica-row:first-child { border-top: 1px solid var(--linha); }
+  .pratica-idx {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem; font-weight: 700; color: var(--verde-neon);
+    letter-spacing: 0.1em; margin-top: 0.15rem; flex-shrink: 0; width: 2rem;
+  }
+  .pratica-body h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--branco); margin-bottom: 0.3rem;
+  }
+  .pratica-body p { font-size: 0.82rem; line-height: 1.65; color: var(--cinza-texto); }
+
+  /* ── TIMELINE ── */
+  .timeline-section { background: var(--cinza-escuro); }
+  .tl-wrap {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 1px; background: var(--linha); margin-top: 3rem;
+  }
+  .tl-card {
+    background: var(--cinza-escuro); padding: 2rem 2rem 2.5rem;
+    position: relative; overflow: hidden;
+    transition: background 0.3s;
+  }
+  .tl-card:hover { background: var(--cinza-medio); }
+  .tl-year {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 3rem; font-weight: 900; color: rgba(255,255,255,0.06);
+    line-height: 1; margin-bottom: 1rem; display: block;
+  }
+  .tl-card h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--verde-neon);
+    margin-bottom: 0.6rem;
+  }
+  .tl-card p { font-size: 0.82rem; line-height: 1.7; color: var(--cinza-texto); }
+  .tl-line {
+    width: 2rem; height: 2px; background: var(--verde-neon);
+    margin-bottom: 1rem;
+  }
+  .tl-card:nth-child(even) .tl-line { background: var(--amarelo); }
+  .tl-card:nth-child(even) h4 { color: var(--amarelo); }
+
+  /* ── IMPACTO ── */
+  .impacto-section { background: var(--preto); }
+  .impacto-grid {
+    display: grid; grid-template-columns: repeat(4,1fr);
+    gap: 1px; background: var(--linha); margin-top: 3rem;
+  }
+  .impact-card {
+    background: var(--preto); padding: 2.5rem 2rem;
+    text-align: center; transition: background 0.3s;
+  }
+  .impact-card:hover { background: var(--cinza-medio); }
+  .impact-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 3.5rem; font-weight: 900; line-height: 1;
+    display: block; margin-bottom: 0.5rem;
+  }
+  .impact-card:nth-child(1) .impact-num { color: var(--verde-neon); }
+  .impact-card:nth-child(2) .impact-num { color: var(--amarelo); }
+  .impact-card:nth-child(3) .impact-num { color: #74c2be; }
+  .impact-card:nth-child(4) .impact-num { color: var(--laranja); }
+  .impact-desc { font-size: 0.8rem; line-height: 1.6; color: var(--cinza-texto); }
+
+  /* ── AÇÕES ── */
+  .acoes-section { background: var(--cinza-escuro); }
+  .acoes-grid {
+    display: grid; grid-template-columns: repeat(4,1fr);
+    gap: 1px; background: var(--linha); margin-top: 3rem;
+  }
+  .acao-box {
+    background: var(--cinza-escuro); padding: 2rem 1.8rem;
+    border-top: 2px solid transparent;
+    transition: all 0.3s;
+  }
+  .acao-box:hover { background: var(--cinza-medio); border-top-color: var(--verde-neon); }
+  .acao-box:nth-child(2):hover { border-top-color: var(--amarelo); }
+  .acao-box:nth-child(3):hover { border-top-color: #74c2be; }
+  .acao-box:nth-child(4):hover { border-top-color: var(--laranja); }
+  .acao-box:nth-child(5):hover { border-top-color: #c97fbd; }
+  .acao-box:nth-child(6):hover { border-top-color: #9ef0a7; }
+  .acao-box:nth-child(7):hover { border-top-color: var(--amarelo); }
+  .acao-box:nth-child(8):hover { border-top-color: var(--laranja); }
+  .acao-box .ico { font-size: 1.8rem; margin-bottom: 1rem; display: block; }
+  .acao-box h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.95rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--branco); margin-bottom: 0.5rem;
+  }
+  .acao-box p { font-size: 0.8rem; line-height: 1.65; color: var(--cinza-texto); }
+
+  /* ── CALLOUT ── */
+  .callout {
+    background: var(--verde-industrial);
+    padding: 5rem 4rem; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .callout::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(8,12,8,0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(8,12,8,0.1) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .callout blockquote {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+    font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.03em; line-height: 1.2;
+    color: var(--preto); max-width: 800px; margin: 0 auto 1rem;
+    position: relative; z-index: 1;
+  }
+  .callout cite {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.82rem; font-weight: 500;
+    color: rgba(8,12,8,0.6); letter-spacing: 0.1em; text-transform: uppercase;
+    position: relative; z-index: 1;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--cinza-escuro);
+    border-top: 1px solid var(--linha);
+    padding: 2.5rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.2rem; font-weight: 900; letter-spacing: 0.15em;
+    color: var(--verde-neon); text-transform: uppercase;
+  }
+  .footer-brand span { color: var(--amarelo); }
+  .footer-copy { font-size: 0.75rem; color: var(--cinza-texto); }
+  .footer-nav { display: flex; gap: 2rem; }
+  .footer-nav a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--cinza-texto);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .footer-nav a:hover { color: var(--verde-neon); }
+
+  /* ── ANIMAÇÕES ── */
+  @keyframes slideIn {
+    from { opacity:0; transform: translateY(30px); }
+    to   { opacity:1; transform: translateY(0); }
+  }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  @keyframes scanline {
+    0%   { opacity:0; transform:translateX(-100%); }
+    20%  { opacity:1; }
+    80%  { opacity:1; }
+    100% { opacity:0; transform:translateX(100%); }
+  }
+  .reveal { opacity:0; transform:translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .reveal.on { opacity:1; transform:translateY(0); }
+
+  /* ── SAIBA MAIS ── */
+  .saiba-section { background: var(--cinza-medio); border-top: 1px solid var(--linha); }
+  .saiba-grid {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 1px; background: var(--linha); margin-top: 3rem;
+  }
+  .saiba-card {
+    background: var(--cinza-medio); padding: 2rem;
+    border-top: 2px solid transparent;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .saiba-card:hover { background: var(--cinza-painel); border-top-color: var(--verde-neon); }
+  .saiba-card:nth-child(2):hover { border-top-color: var(--amarelo); }
+  .saiba-card:nth-child(3):hover { border-top-color: #74c2be; }
+  .saiba-card:nth-child(4):hover { border-top-color: var(--laranja); }
+  .saiba-card:nth-child(5):hover { border-top-color: #c97fbd; }
+  .saiba-card:nth-child(6):hover { border-top-color: var(--verde-limao); }
+  .saiba-categoria {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--verde-neon);
+    margin-bottom: 1rem; display: block;
+  }
+  .saiba-card:nth-child(2) .saiba-categoria { color: var(--amarelo); }
+  .saiba-card:nth-child(3) .saiba-categoria { color: #74c2be; }
+  .saiba-card:nth-child(4) .saiba-categoria { color: var(--laranja); }
+  .saiba-card:nth-child(5) .saiba-categoria { color: #c97fbd; }
+  .saiba-card:nth-child(6) .saiba-categoria { color: var(--verde-limao); }
+  .saiba-card h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--branco); margin-bottom: 0.6rem;
+  }
+  .saiba-card p { font-size: 0.82rem; line-height: 1.65; color: var(--cinza-texto); margin-bottom: 1.2rem; }
+  .saiba-links { display: flex; flex-direction: column; gap: 0.5rem; }
+  .saiba-link {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8rem; color: var(--cinza-texto);
+    text-decoration: none; transition: color 0.2s;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding-bottom: 0.5rem;
+  }
+  .saiba-link:last-child { border-bottom: none; padding-bottom: 0; }
+  .saiba-link:hover { color: var(--verde-neon); }
+  .saiba-link::before {
+    content: '→'; font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; color: var(--verde-neon); flex-shrink: 0;
+  }
+
+  /* ── CONTATO ── */
+  .contato-section {
+    background: var(--cinza-medio);
+    border-top: 1px solid var(--linha);
+    border-bottom: 1px solid var(--linha);
+  }
+  .contato-layout {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+  }
+  .contato-info h2 { color: var(--branco); margin-bottom: 1rem; }
+  .contato-info p { font-size: 0.95rem; line-height: 1.8; color: var(--cinza-texto); margin-bottom: 2rem; }
+  .contato-canais { display: flex; flex-direction: column; gap: 1rem; }
+  .canal {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem 1.2rem;
+    border: 1px solid var(--linha);
+    background: rgba(92,219,110,0.03);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .canal:hover { border-color: var(--verde-neon); background: rgba(92,219,110,0.07); }
+  .canal-ico { font-size: 1.3rem; flex-shrink: 0; }
+  .canal-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--verde-neon); display: block;
+  }
+  .canal-val { font-size: 0.88rem; color: var(--branco); display: block; margin-top: 0.1rem; }
+
+  .contato-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--verde-neon);
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(92,219,110,0.2);
+    color: var(--branco);
+    font-family: 'Barlow', sans-serif; font-size: 0.88rem;
+    padding: 0.8rem 1rem;
+    outline: none; transition: border-color 0.2s, background 0.2s;
+    resize: none;
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(142,166,142,0.5); }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--verde-neon);
+    background: rgba(92,219,110,0.05);
+  }
+  .form-group select option { background: var(--cinza-escuro); color: var(--branco); }
+  .btn-enviar {
+    background: var(--verde-neon); color: var(--preto);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem; font-weight: 800; letter-spacing: 0.15em;
+    text-transform: uppercase; padding: 1rem 2rem;
+    border: none; cursor: pointer; transition: all 0.2s;
+    align-self: flex-start;
+  }
+  .btn-enviar:hover { background: var(--verde-limao); transform: translateY(-2px); }
+  .form-ok {
+    display: none; align-items: center; gap: 0.8rem;
+    padding: 1rem 1.2rem;
+    border: 1px solid var(--verde-neon);
+    background: rgba(92,219,110,0.08);
+    font-size: 0.88rem; color: var(--verde-neon);
+  }
+
+  /* ── LEIS ── */
+  .leis-section { background: var(--preto); }
+  .leis-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 1px; background: var(--linha); margin-top: 3rem;
+  }
+  .lei-card {
+    background: var(--preto); padding: 2rem 2.5rem;
+    display: flex; gap: 2rem; align-items: flex-start;
+    transition: background 0.2s;
+    border-left: 3px solid transparent;
+  }
+  .lei-card:hover { background: var(--cinza-medio); border-left-color: var(--verde-neon); }
+  .lei-card:nth-child(2):hover { border-left-color: var(--amarelo); }
+  .lei-card:nth-child(3):hover { border-left-color: #74c2be; }
+  .lei-card:nth-child(4):hover { border-left-color: var(--laranja); }
+  .lei-card:nth-child(5):hover { border-left-color: #c97fbd; }
+  .lei-card:nth-child(6):hover { border-left-color: var(--verde-limao); }
+  .lei-num-box {
+    flex-shrink: 0;
+    background: rgba(92,219,110,0.08);
+    border: 1px solid rgba(92,219,110,0.2);
+    padding: 0.6rem 0.9rem; text-align: center;
+    min-width: 72px;
+  }
+  .lei-card:nth-child(2) .lei-num-box { background: rgba(242,201,76,0.08); border-color: rgba(242,201,76,0.2); }
+  .lei-card:nth-child(3) .lei-num-box { background: rgba(116,194,190,0.08); border-color: rgba(116,194,190,0.2); }
+  .lei-card:nth-child(4) .lei-num-box { background: rgba(224,123,57,0.08); border-color: rgba(224,123,57,0.2); }
+  .lei-card:nth-child(5) .lei-num-box { background: rgba(201,127,189,0.08); border-color: rgba(201,127,189,0.2); }
+  .lei-card:nth-child(6) .lei-num-box { background: rgba(158,240,167,0.08); border-color: rgba(158,240,167,0.2); }
+  .lei-sigla {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--verde-neon); display: block;
+  }
+  .lei-card:nth-child(2) .lei-sigla { color: var(--amarelo); }
+  .lei-card:nth-child(3) .lei-sigla { color: #74c2be; }
+  .lei-card:nth-child(4) .lei-sigla { color: var(--laranja); }
+  .lei-card:nth-child(5) .lei-sigla { color: #c97fbd; }
+  .lei-card:nth-child(6) .lei-sigla { color: var(--verde-limao); }
+  .lei-ano {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem; font-weight: 900; color: var(--branco);
+    display: block; line-height: 1.1; margin-top: 0.2rem;
+  }
+  .lei-body h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--branco); margin-bottom: 0.4rem;
+  }
+  .lei-numero {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--cinza-texto);
+    display: block; margin-bottom: 0.5rem;
+  }
+  .lei-body p { font-size: 0.82rem; line-height: 1.65; color: var(--cinza-texto); }
+  .lei-tag {
+    display: inline-block; margin-top: 0.8rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; padding: 0.25rem 0.6rem;
+    background: rgba(92,219,110,0.1); color: var(--verde-neon);
+    border: 1px solid rgba(92,219,110,0.2);
+  }
+  .lei-card:nth-child(2) .lei-tag { background: rgba(242,201,76,0.1); color: var(--amarelo); border-color: rgba(242,201,76,0.2); }
+  .lei-card:nth-child(3) .lei-tag { background: rgba(116,194,190,0.1); color: #74c2be; border-color: rgba(116,194,190,0.2); }
+  .lei-card:nth-child(4) .lei-tag { background: rgba(224,123,57,0.1); color: var(--laranja); border-color: rgba(224,123,57,0.2); }
+  .lei-card:nth-child(5) .lei-tag { background: rgba(201,127,189,0.1); color: #c97fbd; border-color: rgba(201,127,189,0.2); }
+  .lei-card:nth-child(6) .lei-tag { background: rgba(158,240,167,0.1); color: var(--verde-limao); border-color: rgba(158,240,167,0.2); }
+
+
+  @media(max-width:960px){
+    nav { padding: 0 1.5rem; }
+    .nav-menu, .nav-tag { display:none; }
+    .hero { grid-template-columns:1fr; }
+    .hero-right { display:none; }
+    .hero-left { padding: 5rem 1.5rem 3rem; }
+    .section { padding: 4rem 1.5rem; }
+    .pilares-grid, .tl-wrap { grid-template-columns:1fr; }
+    .praticas-layout { grid-template-columns:1fr; gap:2rem; }
+    .impacto-grid { grid-template-columns:repeat(2,1fr); }
+    .acoes-grid { grid-template-columns:repeat(2,1fr); }
+    footer { flex-direction:column; text-align:center; padding:2rem 1.5rem; }
+    .callout { padding:4rem 1.5rem; }
+    .contato-layout { grid-template-columns:1fr; gap:3rem; }
+    .form-row { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">AGRO<span>FORTE</span></div>
+  <ul class="nav-menu">
+    <li><a href="#pilares">Pilares</a></li>
+    <li><a href="#praticas">Práticas</a></li>
+    <li><a href="#historico">Histórico</a></li>
+    <li><a href="#impacto">Impacto</a></li>
+    <li><a href="#acoes">Ações</a></li>
+    <li><a href="#saiba">Saiba Mais</a></li>
+  </ul>
+  <span class="nav-tag">Futuro Sustentável</span>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-left">
+    <div class="hero-kicker">Equilíbrio · Produção · Meio Ambiente</div>
+    <h1>
+      AGRO
+      <span class="line-green">FORTE</span>
+      <span class="line-yellow">FUTURO</span>
+      SUSTENTÁVEL
+    </h1>
+    <p class="hero-desc">
+      A agricultura moderna prova que é possível produzir mais alimentos, gerar renda e ainda proteger os recursos naturais que sustentam toda a vida no planeta.
+    </p>
+    <div class="hero-btns">
+      <a href="#pilares" class="btn-verde">Conhecer os pilares</a>
+      <a href="#praticas" class="btn-ghost">Ver práticas</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-visual-bg"></div>
+    <div class="hero-stripes">
+      <div class="stripe"></div>
+      <div class="stripe"></div>
+      <div class="stripe"></div>
+    </div>
+    <div class="hero-data-panel">
+      <div class="data-label">// Dados do Agro Brasileiro</div>
+      <div class="data-grid">
+        <div class="data-cell">
+          <span class="num">35M</span>
+          <span class="unit">ha em plantio direto</span>
+        </div>
+        <div class="data-cell">
+          <span class="num">50%</span>
+          <span class="unit">do território com vegetação nativa</span>
+        </div>
+        <div class="data-cell">
+          <span class="num">70%</span>
+          <span class="unit">energia elétrica renovável</span>
+        </div>
+        <div class="data-cell">
+          <span class="num">5,6M</span>
+          <span class="unit">propriedades no cadastro ambiental</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item"><span class="ticker-dot"></span>PRODUÇÃO SUSTENTÁVEL</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>CONSERVAÇÃO DO SOLO</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>USO EFICIENTE DA ÁGUA</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>ENERGIA RENOVÁVEL NO CAMPO</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>BIODIVERSIDADE PRESERVADA</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>AGRICULTURA DE BAIXO CARBONO</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>TECNOLOGIA VERDE</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>FUTURO QUE ALIMENTA</span>
+    <!-- duplicar para loop contínuo -->
+    <span class="ticker-item"><span class="ticker-dot"></span>PRODUÇÃO SUSTENTÁVEL</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>CONSERVAÇÃO DO SOLO</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>USO EFICIENTE DA ÁGUA</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>ENERGIA RENOVÁVEL NO CAMPO</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>BIODIVERSIDADE PRESERVADA</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>AGRICULTURA DE BAIXO CARBONO</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>TECNOLOGIA VERDE</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>FUTURO QUE ALIMENTA</span>
+  </div>
+</div>
+
+<!-- PILARES -->
+<section class="section pilares-section" id="pilares">
+  <div class="reveal">
+    <div class="sec-tag">Os pilares temáticos</div>
+    <h2 class="sec-title">6 dimensões do equilíbrio</h2>
+    <p class="sec-sub">Produção e natureza podem — e devem — caminhar juntas. Conheça os seis eixos que definem a agricultura sustentável.</p>
+  </div>
+  <div class="pilares-grid reveal">
+    <div class="pilar" data-num="01">
+      <div class="pilar-bar"></div>
+      <span class="pilar-icon">🌿</span>
+      <h3>Agropecuária Sustentável</h3>
+      <p>Técnicas modernas que aumentam a produção sem esgotar o solo nem contaminar rios e aquíferos. O Brasil lidera práticas como a integração lavoura-pecuária-floresta, reduzindo emissões e aumentando produtividade por hectare.</p>
+    </div>
+    <div class="pilar" data-num="02">
+      <div class="pilar-bar"></div>
+      <span class="pilar-icon">💧</span>
+      <h3>Uso Inteligente da Água</h3>
+      <p>A irrigação eficiente e o manejo correto de bacias hidrográficas garantem água para o campo e para as cidades. Cada gota economizada é um rio preservado para as próximas gerações.</p>
+    </div>
+    <div class="pilar" data-num="03">
+      <div class="pilar-bar"></div>
+      <span class="pilar-icon">🌍</span>
+      <h3>Solo: a Base de Tudo</h3>
+      <p>Solo saudável é o maior tesouro do agricultor. Plantio direto, adubação orgânica e rotação de culturas mantêm a terra fértil por gerações, sequestram carbono e reduzem a emissão de gases estufa.</p>
+    </div>
+    <div class="pilar" data-num="04">
+      <div class="pilar-bar"></div>
+      <span class="pilar-icon">🐝</span>
+      <h3>Biodiversidade</h3>
+      <p>Florestas nativas, polinizadores e corredores ecológicos são aliados da produção, não obstáculos. Sem abelhas não há frutas. Sem matas ciliares não há água nos rios nem peixe no prato.</p>
+    </div>
+    <div class="pilar" data-num="05">
+      <div class="pilar-bar"></div>
+      <span class="pilar-icon">⚡</span>
+      <h3>Energia Limpa no Campo</h3>
+      <p>Painéis solares, biogás de dejetos e biomassa de resíduos transformam propriedades rurais em geradoras de energia renovável, reduzindo custos operacionais e emissões de carbono.</p>
+    </div>
+    <div class="pilar" data-num="06">
+      <div class="pilar-bar"></div>
+      <span class="pilar-icon">🤝</span>
+      <h3>Pessoas e Comunidades</h3>
+      <p>Agricultura familiar, cooperativismo e valorização do produtor rural garantem soberania alimentar e distribuição de renda. Campo forte significa cidades abastecidas e mesa posta para todos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRÁTICAS -->
+<section class="section praticas-section" id="praticas">
+  <div class="praticas-layout">
+    <div class="reveal">
+      <div class="sec-tag">Soluções reais</div>
+      <h2 class="sec-title">Práticas sustentáveis</h2>
+      <p class="sec-sub">Tecnologias e saberes que conciliam produção de alimentos com conservação do planeta. Do campo para o mundo.</p>
+    </div>
+    <div class="praticas-lista reveal">
+      <div class="pratica-row">
+        <span class="pratica-idx">01</span>
+        <div class="pratica-body">
+          <h4>Plantio Direto</h4>
+          <p>Semear sem revolver o solo preserva sua estrutura, evita erosão e mantém a umidade. O Brasil tem mais de 35 milhões de hectares com essa técnica, sendo referência mundial.</p>
+        </div>
+      </div>
+      <div class="pratica-row">
+        <span class="pratica-idx">02</span>
+        <div class="pratica-body">
+          <h4>Sistemas Agroflorestais</h4>
+          <p>Integrar árvores, culturas agrícolas e animais na mesma área imita a floresta natural, aumenta a produtividade e sequestra carbono em larga escala.</p>
+        </div>
+      </div>
+      <div class="pratica-row">
+        <span class="pratica-idx">03</span>
+        <div class="pratica-body">
+          <h4>ILPF — Integração Lavoura-Pecuária-Floresta</h4>
+          <p>Sistema que combina pastagem, grãos e eucaliptos no mesmo espaço, recuperando áreas degradadas e diversificando a renda do produtor rural.</p>
+        </div>
+      </div>
+      <div class="pratica-row">
+        <span class="pratica-idx">04</span>
+        <div class="pratica-body">
+          <h4>Irrigação por Gotejamento</h4>
+          <p>Leva água diretamente à raiz da planta, usando até 60% menos volume que a irrigação convencional. Eficiência máxima com impacto mínimo nos recursos hídricos.</p>
+        </div>
+      </div>
+      <div class="pratica-row">
+        <span class="pratica-idx">05</span>
+        <div class="pratica-body">
+          <h4>Controle Biológico de Pragas</h4>
+          <p>Insetos benéficos, fungos e bactérias naturais combatem pragas sem agroquímicos, preservando o equilíbrio ecológico e a saúde dos solos.</p>
+        </div>
+      </div>
+      <div class="pratica-row">
+        <span class="pratica-idx">06</span>
+        <div class="pratica-body">
+          <h4>Energia Solar Fotovoltaica Rural</h4>
+          <p>Propriedades usam energia solar para irrigação, refrigeração e processamento. Autossuficiência energética com zero emissão de carbono no processo.</p>
+        </div>
+      </div>
+      <div class="pratica-row">
+        <span class="pratica-idx">07</span>
+        <div class="pratica-body">
+          <h4>Compostagem e Biodigestão</h4>
+          <p>Resíduos orgânicos da produção viram adubo e biogás, fechando o ciclo dos nutrientes e gerando energia renovável dentro da própria propriedade.</p>
+        </div>
+      </div>
+      <div class="pratica-row">
+        <span class="pratica-idx">08</span>
+        <div class="pratica-body">
+          <h4>Agricultura de Precisão por Satélite</h4>
+          <p>Drones e sensores monitoram safras em tempo real, identificando áreas com déficit de nutrientes ou estresse hídrico, eliminando desperdício de insumos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HISTÓRICO -->
+<section class="section timeline-section" id="historico">
+  <div class="reveal">
+    <div class="sec-tag">Linha do tempo</div>
+    <h2 class="sec-title">Marcos históricos</h2>
+    <p class="sec-sub">Como o Brasil construiu uma das agriculturas mais eficientes e comprometidas com a sustentabilidade no planeta.</p>
+  </div>
+  <div class="tl-wrap reveal">
+    <div class="tl-card">
+      <span class="tl-year">1965</span>
+      <div class="tl-line"></div>
+      <h4>Código Florestal</h4>
+      <p>O Brasil institui regras para proteção de matas ciliares e reservas legais, tornando-se base legal da preservação ambiental no campo.</p>
+    </div>
+    <div class="tl-card">
+      <span class="tl-year">1975</span>
+      <div class="tl-line"></div>
+      <h4>Plantio Direto Pioneiro</h4>
+      <p>Agricultores paranaenses adotam o plantio direto, revolução que salvou os solos do Paraná da erosão e se espalhou por todo o mundo.</p>
+    </div>
+    <div class="tl-card">
+      <span class="tl-year">1988</span>
+      <div class="tl-line"></div>
+      <h4>Direito ao Meio Ambiente</h4>
+      <p>A Constituição define o meio ambiente equilibrado como direito fundamental, exigindo que a propriedade rural cumpra função ambiental e social.</p>
+    </div>
+    <div class="tl-card">
+      <span class="tl-year">2006</span>
+      <div class="tl-line"></div>
+      <h4>Moratória da Soja</h4>
+      <p>Acordo inédito entre indústria e produtores proíbe a compra de soja proveniente de áreas de desmatamento no Cerrado e Amazônia.</p>
+    </div>
+    <div class="tl-card">
+      <span class="tl-year">2012</span>
+      <div class="tl-line"></div>
+      <h4>Cadastro Ambiental Rural</h4>
+      <p>Novo Código Florestal institui o CAR, monitorando 5,6 milhões de propriedades por satélite e criando o maior banco de dados fundiário do mundo.</p>
+    </div>
+    <div class="tl-card">
+      <span class="tl-year">2023</span>
+      <div class="tl-line"></div>
+      <h4>Plano ABC+ e Carbono Rural</h4>
+      <p>Brasil lidera compromissos globais de baixo carbono na agropecuária, com metas de restaurar 20 milhões de hectares e zerar o desmatamento ilegal.</p>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACTO -->
+<section class="section impacto-section" id="impacto">
+  <div class="reveal">
+    <div class="sec-tag">Números que importam</div>
+    <h2 class="sec-title">Impacto real</h2>
+    <p class="sec-sub">O Brasil prova que é possível produzir mais e degradar menos. Os dados revelam uma transformação silenciosa nos campos.</p>
+  </div>
+  <div class="impacto-grid reveal">
+    <div class="impact-card">
+      <span class="impact-num">50%</span>
+      <p class="impact-desc">da área do Brasil ainda coberta por vegetação nativa</p>
+    </div>
+    <div class="impact-card">
+      <span class="impact-num">35M</span>
+      <p class="impact-desc">hectares em plantio direto — 2º maior do mundo</p>
+    </div>
+    <div class="impact-card">
+      <span class="impact-num">70%</span>
+      <p class="impact-desc">da energia elétrica brasileira de fontes renováveis</p>
+    </div>
+    <div class="impact-card">
+      <span class="impact-num">5,6M</span>
+      <p class="impact-desc">propriedades no CAR para monitoramento ambiental</p>
+    </div>
+  </div>
+</section>
+
+<!-- AÇÕES -->
+<section class="section acoes-section" id="acoes">
+  <div class="reveal">
+    <div class="sec-tag">Ação individual</div>
+    <h2 class="sec-title">O que você pode fazer</h2>
+    <p class="sec-sub">A sustentabilidade começa em pequenas atitudes diárias — na escola, em casa e na sua comunidade.</p>
+  </div>
+  <div class="acoes-grid reveal">
+    <div class="acao-box">
+      <span class="ico">🛒</span>
+      <h4>Consuma Consciente</h4>
+      <p>Prefira produtos locais e sazonais. Valorize o produtor rural e reduza a distância entre a fazenda e o seu prato.</p>
+    </div>
+    <div class="acao-box">
+      <span class="ico">🌱</span>
+      <h4>Cultive em Casa</h4>
+      <p>Uma hortinha em vasos ou canteiros ensina o ciclo da vida e diminui o desperdício de alimentos no lar.</p>
+    </div>
+    <div class="acao-box">
+      <span class="ico">💧</span>
+      <h4>Economize Água</h4>
+      <p>Fechar a torneira, reaproveitar água da chuva e denunciar vazamentos são atos que protegem o planeta.</p>
+    </div>
+    <div class="acao-box">
+      <span class="ico">📚</span>
+      <h4>Estude e Compartilhe</h4>
+      <p>Conhecimento transforma. Pesquise e espalhe informações corretas sobre agricultura e meio ambiente.</p>
+    </div>
+    <div class="acao-box">
+      <span class="ico">♻️</span>
+      <h4>Reduza o Lixo</h4>
+      <p>Compostagem doméstica gera adubo natural e reduz o volume de resíduos que vai para aterros sanitários.</p>
+    </div>
+    <div class="acao-box">
+      <span class="ico">🌳</span>
+      <h4>Plante uma Árvore</h4>
+      <p>Uma árvore plantada absorve toneladas de CO₂ ao longo de sua vida. Cada muda é um presente para o futuro.</p>
+    </div>
+    <div class="acao-box">
+      <span class="ico">🚴</span>
+      <h4>Mobilidade Verde</h4>
+      <p>Ir a pé, de bicicleta ou de transporte público reduz emissões de carbono e melhora a qualidade do ar.</p>
+    </div>
+    <div class="acao-box">
+      <span class="ico">📢</span>
+      <h4>Seja Protagonista</h4>
+      <p>Participe de projetos ambientais. Escreva, desenhe e mostre como você imagina um agro forte e sustentável.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LEIS AMBIENTAIS -->
+<section class="section leis-section" id="leis">
+  <div class="reveal">
+    <div class="sec-tag">Marco legal</div>
+    <h2 class="sec-title">Leis que protegem<br>o meio ambiente</h2>
+    <p class="sec-sub">O Brasil possui uma das legislações ambientais mais completas do mundo. Conheça as principais leis que regulam a relação entre produção rural e natureza.</p>
+  </div>
+  <div class="leis-grid reveal">
+
+    <div class="lei-card">
+      <div class="lei-num-box">
+        <span class="lei-sigla">Lei</span>
+        <span class="lei-ano">1965</span>
+      </div>
+      <div class="lei-body">
+        <h4>Código Florestal Brasileiro</h4>
+        <span class="lei-numero">Lei nº 4.771/1965 · Revisada pela Lei nº 12.651/2012</span>
+        <p>Determina que toda propriedade rural mantenha uma Reserva Legal (20% a 80% da área, dependendo do bioma) e preserve as matas ciliares às margens de rios e nascentes, proibindo o desmatamento nessas áreas.</p>
+        <span class="lei-tag">Floresta & Solo</span>
+      </div>
+    </div>
+
+    <div class="lei-card">
+      <div class="lei-num-box">
+        <span class="lei-sigla">Art.</span>
+        <span class="lei-ano">225</span>
+      </div>
+      <div class="lei-body">
+        <h4>Constituição Federal — Meio Ambiente</h4>
+        <span class="lei-numero">Art. 225 da Constituição de 1988</span>
+        <p>Garante a todos o direito ao meio ambiente ecologicamente equilibrado, impondo ao Poder Público e à coletividade o dever de preservá-lo para as presentes e futuras gerações. É a base constitucional de toda a legislação ambiental brasileira.</p>
+        <span class="lei-tag">Direito Fundamental</span>
+      </div>
+    </div>
+
+    <div class="lei-card">
+      <div class="lei-num-box">
+        <span class="lei-sigla">Lei</span>
+        <span class="lei-ano">1981</span>
+      </div>
+      <div class="lei-body">
+        <h4>Política Nacional do Meio Ambiente</h4>
+        <span class="lei-numero">Lei nº 6.938/1981</span>
+        <p>Criou o SISNAMA (Sistema Nacional do Meio Ambiente) e o IBAMA, estabeleceu o princípio do poluidor-pagador e tornou obrigatório o Estudo de Impacto Ambiental (EIA) para atividades que possam causar danos à natureza.</p>
+        <span class="lei-tag">Política Pública</span>
+      </div>
+    </div>
+
+    <div class="lei-card">
+      <div class="lei-num-box">
+        <span class="lei-sigla">Lei</span>
+        <span class="lei-ano">1998</span>
+      </div>
+      <div class="lei-body">
+        <h4>Lei de Crimes Ambientais</h4>
+        <span class="lei-numero">Lei nº 9.605/1998</span>
+        <p>Tipifica como crime ações como desmatar sem autorização, matar animais silvestres, poluir rios e queimar vegetação nativa. Pessoas físicas e jurídicas podem ser punidas com multas, detenção e suspensão de atividades.</p>
+        <span class="lei-tag">Proteção & Sanção</span>
+      </div>
+    </div>
+
+    <div class="lei-card">
+      <div class="lei-num-box">
+        <span class="lei-sigla">Lei</span>
+        <span class="lei-ano">1997</span>
+      </div>
+      <div class="lei-body">
+        <h4>Política Nacional de Recursos Hídricos</h4>
+        <span class="lei-numero">Lei nº 9.433/1997 — Lei das Águas</span>
+        <p>Define a água como bem público e recurso natural limitado com valor econômico. Institui o sistema de outorga de uso da água e cria os Comitês de Bacia Hidrográfica para gestão participativa dos recursos hídricos no país.</p>
+        <span class="lei-tag">Recursos Hídricos</span>
+      </div>
+    </div>
+
+    <div class="lei-card">
+      <div class="lei-num-box">
+        <span class="lei-sigla">Lei</span>
+        <span class="lei-ano">2010</span>
+      </div>
+      <div class="lei-body">
+        <h4>Política Nacional sobre Mudança do Clima</h4>
+        <span class="lei-numero">Lei nº 12.187/2009</span>
+        <p>Compromete o Brasil a reduzir entre 36,1% e 38,9% das emissões de gases de efeito estufa projetadas até 2020, com foco especial na redução do desmatamento na Amazônia e no Cerrado e no fortalecimento da agricultura de baixo carbono.</p>
+        <span class="lei-tag">Clima & Carbono</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CALLOUT -->
+<div class="callout reveal">
+  <blockquote>"A terra não é herança dos nossos pais — ela é emprestada dos nossos filhos."</blockquote>
+  <cite>— Provérbio indígena norte-americano</cite>
+</div>
+
+<!-- SAIBA MAIS -->
+<section class="section saiba-section" id="saiba">
+  <div class="reveal">
+    <div class="sec-tag">Aprofunde o conhecimento</div>
+    <h2 class="sec-title">Saiba mais</h2>
+    <p class="sec-sub">Referências, portais e materiais para quem quer ir além e entender como o campo e o meio ambiente podem caminhar juntos.</p>
+  </div>
+  <div class="saiba-grid reveal">
+    <div class="saiba-card">
+      <span class="saiba-categoria">Governo & Políticas</span>
+      <h4>Legislação Ambiental</h4>
+      <p>Portais oficiais com leis, decretos e programas federais sobre uso da terra, conservação e agricultura de baixo carbono.</p>
+      <div class="saiba-links">
+        <a href="https://www.gov.br/mapa/pt-br" target="_blank" class="saiba-link">Ministério da Agricultura (MAPA)</a>
+        <a href="https://www.gov.br/ibama/pt-br" target="_blank" class="saiba-link">IBAMA — Meio Ambiente</a>
+        <a href="https://www.car.gov.br" target="_blank" class="saiba-link">Cadastro Ambiental Rural (CAR)</a>
+      </div>
+    </div>
+    <div class="saiba-card">
+      <span class="saiba-categoria">Pesquisa & Ciência</span>
+      <h4>Inovação no Campo</h4>
+      <p>Instituições brasileiras de referência em pesquisa agropecuária e sustentabilidade, com publicações abertas ao público.</p>
+      <div class="saiba-links">
+        <a href="https://www.embrapa.br" target="_blank" class="saiba-link">Embrapa — Pesquisa Agropecuária</a>
+        <a href="https://www.iapar.br" target="_blank" class="saiba-link">Instituto Agronômico do Paraná</a>
+        <a href="https://www.scielo.br" target="_blank" class="saiba-link">SciELO — Artigos Científicos</a>
+      </div>
+    </div>
+    <div class="saiba-card">
+      <span class="saiba-categoria">Meio Ambiente</span>
+      <h4>Conservação & Clima</h4>
+      <p>Organizações que monitoram o desmatamento, a biodiversidade e as mudanças climáticas com dados abertos e confiáveis.</p>
+      <div class="saiba-links">
+        <a href="https://www.inpe.br" target="_blank" class="saiba-link">INPE — Monitoramento Ambiental</a>
+        <a href="https://www.wwf.org.br" target="_blank" class="saiba-link">WWF Brasil — Biodiversidade</a>
+        <a href="https://www.ipcc.ch" target="_blank" class="saiba-link">IPCC — Painel do Clima (ONU)</a>
+      </div>
+    </div>
+    <div class="saiba-card">
+      <span class="saiba-categoria">Educação</span>
+      <h4>Aprendizado Contínuo</h4>
+      <p>Plataformas com cursos gratuitos e materiais didáticos sobre agricultura sustentável, ecologia e meio ambiente.</p>
+      <div class="saiba-links">
+        <a href="https://www.senar.org.br" target="_blank" class="saiba-link">SENAR — Capacitação Rural</a>
+        <a href="https://www.escolavirtual.gov.br" target="_blank" class="saiba-link">Escola Virtual Gov — Cursos</a>
+        <a href="https://www.khan.br" target="_blank" class="saiba-link">Khan Academy Brasil</a>
+      </div>
+    </div>
+    <div class="saiba-card">
+      <span class="saiba-categoria">Produção Sustentável</span>
+      <h4>Boas Práticas</h4>
+      <p>Guias técnicos e manuais práticos sobre irrigação eficiente, manejo do solo e sistemas integrados de produção.</p>
+      <div class="saiba-links">
+        <a href="https://www.fao.org/brasil" target="_blank" class="saiba-link">FAO Brasil — Alimentação e Agro</a>
+        <a href="https://www.agroicone.com.br" target="_blank" class="saiba-link">Agroicone — Políticas Agrícolas</a>
+        <a href="https://www.imaflora.org" target="_blank" class="saiba-link">Imaflora — Florestas e Agro</a>
+      </div>
+    </div>
+    <div class="saiba-card">
+      <span class="saiba-categoria">Água & Energia</span>
+      <h4>Recursos Naturais</h4>
+      <p>Portais sobre gestão hídrica, energia renovável no campo e uso responsável dos recursos naturais no Brasil.</p>
+      <div class="saiba-links">
+        <a href="https://www.ana.gov.br" target="_blank" class="saiba-link">ANA — Agência Nacional das Águas</a>
+        <a href="https://www.aneel.gov.br" target="_blank" class="saiba-link">ANEEL — Energia Renovável</a>
+        <a href="https://www.cnrh.gov.br" target="_blank" class="saiba-link">Conselho Nacional de Recursos Hídricos</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">AGRO<span>FORTE</span></div>
+  <div class="footer-copy">Agro Forte, Futuro Sustentável — Equilíbrio entre produção e meio ambiente</div>
+  <nav class="footer-nav">
+    <a href="#pilares">Pilares</a>
+    <a href="#praticas">Práticas</a>
+    <a href="#historico">Histórico</a>
+    <a href="#impacto">Impacto</a>
+  </nav>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('on'), i * 100);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
